@@ -34,7 +34,7 @@ Then you can test the project on postman or any other tools.
 
 ### Endpoints
 
-###Security
+#### Security 
 Every endpoints will need to be authenticated with the basic authorization
 
 `username:moses`

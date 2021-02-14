@@ -43,7 +43,7 @@ public class EmblControllerTests {
     private final ObjectMapper mapper= new ObjectMapper();
 
     @Test
-    void it_should_return_created_person() throws Exception {
+    void verifySavePerson() throws Exception {
 
         CreatePersonRequest createPersonRequest = new CreatePersonRequest();
         createPersonRequest.setAge("29");
@@ -66,7 +66,7 @@ public class EmblControllerTests {
     }
 
     @Test
-    void it_should_return_400_created_person() throws Exception {
+    void verify400RequestPerson() throws Exception {
 
         CreatePersonRequest createPersonRequest = new CreatePersonRequest();
         createPersonRequest.setAge("29");
@@ -83,8 +83,7 @@ public class EmblControllerTests {
 
     @WithMockUser("MOSES")
     @Test
-    @DisplayName("Test findAll()")
-    public void findAllUsers_InputsAreValid_ReturnUserList() throws Exception {
+    public void verifyAllPersonList() throws Exception {
         //given
         Person person1 = new Person(1L, "mike", "moses","23", "blue");
         Person person2 = new Person(1L, "mike", "moses","23", "blue");
@@ -109,8 +108,7 @@ public class EmblControllerTests {
 
 
     @Test
-    @DisplayName("Test findById() with invalid userId")
-    public void findUserById_ReturnPersonAsResponse() throws Exception {
+    public void verifyPersonById() throws Exception {
         Person person = new Person(1L, "mike", "moses","23", "blue");
         given(iPersonService.getPersonById(person.getId())).willReturn(person);
 
@@ -123,8 +121,7 @@ public class EmblControllerTests {
     }
 
     @Test
-    @DisplayName("Test findById() with invalid userId")
-    public void findUserById_WhenIdIsInValid_ReturnUserAsResponse_And_Internal_Error() throws Exception {
+    public void verifyInvalidPersonIDArgument() throws Exception {
         when(iPersonService.getPersonById(Mockito.anyLong())).thenReturn(new Person());
         mockMvc.perform(get("/persons/{id}","aa")
                 .with(user("moses").password("mosespass"))
@@ -133,8 +130,7 @@ public class EmblControllerTests {
     }
 
     @Test
-    @DisplayName("Test findById() with invalid userId")
-    public void findUserById_ReturnPerson_NotFound() throws Exception {
+    public void verifyInvalidPersonIdToNotFound() throws Exception {
         when(iPersonService.getPersonById(Mockito.anyLong())).thenThrow(new ResourceNotFoundException(""));
         mockMvc.perform(get("/persons/{id}",1L)
                 .with(user("moses").password("mosespass"))
@@ -145,7 +141,7 @@ public class EmblControllerTests {
     }
 
     @Test
-    public void testPutExample() throws Exception {
+    public void verifyUpdatePerson() throws Exception {
         UpdatePersonRequest updatePersonRequest = new UpdatePersonRequest();
         updatePersonRequest.setId(1L);
         updatePersonRequest.setAge("23");
@@ -171,7 +167,7 @@ public class EmblControllerTests {
 
 
     @Test
-    public void testUpdatePersonNotFound() throws Exception {
+    public void verifyUpdatePersonNotFound() throws Exception {
         UpdatePersonRequest updatePersonRequest = new UpdatePersonRequest();
         updatePersonRequest.setId(1L);
         updatePersonRequest.setAge("23");
@@ -190,7 +186,7 @@ public class EmblControllerTests {
     }
 
     @Test
-    public void testUpdatePersonBadRequest() throws Exception {
+    public void verifyUpdatePersonBadRequest() throws Exception {
         UpdatePersonRequest updatePersonRequest = new UpdatePersonRequest();
         updatePersonRequest.setId(1L);
 
@@ -204,7 +200,7 @@ public class EmblControllerTests {
     }
 
     @Test
-    void deleteById_PersonEntryFound_ShouldDeleteTodoEntryAndReturnIt() throws Exception {
+    void verifyDeletePersonById() throws Exception {
         when(iPersonService.deletePersonById(1L)).thenReturn(Boolean.TRUE);
         mockMvc.perform(delete("/persons/{id}", 1L)
                 .with(user("moses").password("mosespass")))
@@ -214,7 +210,7 @@ public class EmblControllerTests {
     }
 
     @Test
-    public void deleteById_TodoIsNotFound_ShouldReturnHttpStatusCode404() throws Exception {
+    public void verifyDeletePersonByIdNotFound() throws Exception {
         when(iPersonService.deletePersonById(1L)).thenThrow(new ResourceNotFoundException(""));
 
         mockMvc.perform(delete("/persons/{id}", 1L)

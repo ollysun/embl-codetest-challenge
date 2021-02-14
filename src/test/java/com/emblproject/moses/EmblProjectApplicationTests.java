@@ -39,7 +39,7 @@ class EmblProjectApplicationTests {
 
 	@WithMockUser("MOSES")
 	@Test
-	public void find_login_ok() throws Exception {
+	public void verifyAuthenticationUser() throws Exception {
 		Person person = new Person(1L, "Bodhisattva","female",
 				"12", "Blue");
 		when(mockRepository.findById(1L)).thenReturn(Optional.of(person));
@@ -50,7 +50,7 @@ class EmblProjectApplicationTests {
 	}
 
 	@Test
-	public void find_nologin_get_401() throws Exception {
+	public void verifyAuthenticationUserNotFound() throws Exception {
 		Person person = new Person(1L, "Bodhisattva","female",
 				"12", "Blue");
 		when(mockRepository.findById(1L)).thenReturn(Optional.of(person));

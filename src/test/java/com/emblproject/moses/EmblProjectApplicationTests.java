@@ -2,7 +2,6 @@ package com.emblproject.moses;
 
 import com.emblproject.moses.entity.Person;
 import com.emblproject.moses.repository.IPersonRepository;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -30,11 +29,6 @@ class EmblProjectApplicationTests {
 
 	@MockBean
 	private IPersonRepository mockRepository;
-
-	@Test
-	public void contextLoads() {
-
-	}
 
 
 	@WithMockUser("MOSES")

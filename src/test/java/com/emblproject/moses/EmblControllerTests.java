@@ -6,7 +6,6 @@ import com.emblproject.moses.dto.request.UpdatePersonRequest;
 import com.emblproject.moses.entity.Person;
 import com.emblproject.moses.service.IPersonService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.nio.charset.Charset;
 import java.util.*;
 
 import static org.hamcrest.core.Is.is;

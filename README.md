@@ -47,8 +47,8 @@ The project has six endpoints. They are all defined in the `PersonController`:
 - `POST /persons` - a POST endpoint that takes a JSON body of the `Person` object and returns a JSON `Persons` object saved in Databse
 
 - `PUT /persons/{id}` - a PUT endpoint that takes the parameter `id` of the object to be updated, and the JSON body of the `Person` object, 
-                        and returns a JSON `Persons` object
-- `DELETE /persons/{id}` - a DELETE endpoint to delete `Persons` object by `id`
+                        and returns a JSON `Person` object
+- `DELETE /persons/{id}` - a DELETE endpoint to delete `Person` object by `id`
 - `DELETE /persons` - a DELETE endpoint to delete all `Person` object
 
 # To create person, use this payload

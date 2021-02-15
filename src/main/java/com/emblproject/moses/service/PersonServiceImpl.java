@@ -2,9 +2,7 @@ package com.emblproject.moses.service;
 
 import java.util.*;
 
-import com.emblproject.moses.Exception.PersonException;
 import com.emblproject.moses.Exception.ResourceNotFoundException;
-import com.emblproject.moses.dto.request.CreatePersonRequest;
 import com.emblproject.moses.dto.request.UpdatePersonRequest;
 import com.emblproject.moses.repository.IPersonRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +28,7 @@ public class PersonServiceImpl implements IPersonService {
 
 	@Transactional
 	@Override
-	public Person createPerson(CreatePersonRequest createPersonRequest)  {
+	public Person createPerson(Person createPersonRequest)  {
 		Person personResponse;
 			personResponse = ipersonRepository.save(new Person(null,createPersonRequest.getFirst_name(),
 					createPersonRequest.getLast_name(), createPersonRequest.getAge(),
